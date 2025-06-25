@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARKADIO - Soluciones Tecnológicas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="MARKADIO: Soluciones tecnológicas innovadoras para empresas. Desarrollo de software, inteligencia artificial, automatización, virtualización, nube y seguridad informática.">
+    <meta name="keywords" content="tecnología, software, inteligencia artificial, automatización, virtualización, nube, seguridad, MARKADIO, soluciones empresariales">
+    <!-- Open Graph -->
+    <meta property="og:title" content="MARKADIO - Soluciones Tecnológicas">
+    <meta property="og:description" content="Transformamos ideas en realidades digitales con soluciones innovadoras y personalizadas para tu negocio.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.markadio.com/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1472&q=80">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+    <style>
+        /* Variables de color y fuentes */
+        :root {
+            --primary: #2a3f8f;
+            --secondary: #00a0e9;
+            --accent: #ff6b00;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--accent);
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: #e05d00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            color: var(--primary);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin-top: 15px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            font-weight: 600;
+            color: var(--dark);
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(42, 63, 143, 0.8), rgba(0, 160, 233, 0.8)), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Services Grid */
+        .services {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+            background: rgba(42, 63, 143, 0.1);
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .service-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            color: var(--accent);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-link i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            margin-bottom: 30px;
+            color: var(--gray);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .testimonials-container {
+            margin-top: 50px;
+        }
+
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(42, 63, 143, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .blog-excerpt {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .blog-likes {
+            display: flex;
+            align-items: center;
+            color: var(--accent);
+        }
+
+        .blog-likes i {
+            margin-right: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3, .footer-newsletter h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-links h3::after, .footer-newsletter h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            opacity: 1;
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-family: inherit;
+        }
+
+        .newsletter-form button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #e05d00;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 20px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .btn {
+                padding: 10px 20px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-form button {
+                border-radius: 30px;
+                padding: 12px;
+            }
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjMmEzZjhjIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwWm0xMDEuOC0yNjEuN2wtODQuOS02MS43Yy0zLjEtMi4yLTcuMi0yLjItMTAuMyAwbC04NC45IDYxLjdjLTQuMSAzLTUgOC41LTEuOCAxMi43bDQzLjUgNjAuMWMzLjEgNC4zIDguOCA0LjMgMTEuOCAwbDM4LjEtNTIuNGMzLjEtNC4yIDkuNS00LjIgMTIuNiAwbDM4LjEgNTIuNGMzLjEgNC4zIDguOCA0LjMgMTEuOCAwbDQzLjUtNjAuMWMzLjItNC4yIDIuMy05LjctMS44LTEyLjd6Ii8+PC9zdmc+" alt="Logo de MARKADIO, círculo azul con letras estilizadas">
+                <div class="logo-text">MARKA<span>DIO</span></div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#packages">Paquetes</a></li>
+                    <li><a href="#clients">Clientes</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+                <div class="hamburger" aria-label="Abrir menú de navegación" role="button" tabindex="0">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero reveal" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Soluciones Tecnológicas para tu Negocio</h1>
+                <p>Transformamos ideas en realidades digitales con soluciones innovadoras y personalizadas para impulsar tu negocio al siguiente nivel.</p>
+                <a href="#contact" class="btn">Contáctanos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services reveal" id="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">Ofrecemos soluciones tecnológicas integrales diseñadas para satisfacer las necesidades específicas de tu negocio.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Desarrollo de software a la medida</h3>
+                        <p>Creación de aplicaciones personalizadas que se adaptan perfectamente a tus procesos empresariales.</p>
+                        <a href="javascript:void(0)" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Inteligencia Artificial</h3>
+                        <p>Implementamos soluciones de IA para automatizar procesos, analizar datos y mejorar la toma de decisiones.</p>
+                        <a href="javascript:void(0)" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Automatización</h3>
+                        <p>Optimizamos tus procesos empresariales mediante la automatización de tareas repetitivas.</p>
+                        <a href="javascript:void(0)" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Virtualización</h3>
+                        <p>Soluciones de virtualización para reducir costos de hardware y mejorar la eficiencia operativa.</p>
+                        <a href="javascript:void(0)" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Despliegue y servicios en la nube</h3>
+                        <p>Migración, implementación y gestión de infraestructuras en la nube para mayor escalabilidad.</p>
+                        <a href="javascript:void(0)" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Seguridad informática</h3>
+                        <p>Protección integral de tus sistemas y datos contra amenazas cibernéticas.</p>
+                        <a href="javascript:void(0)" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Nuevo servicio agregado -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Análisis de Datos y Big Data</h3>
+                        <p>Soluciones avanzadas de análisis predictivo, gestión de riesgos y consultoría en big data para toma de decisiones estratégicas.</p>
+                        <a href="javascript:void(0)" class="service-link">Saber más <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about reveal" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Equipo de trabajo de MARKADIO colaborando en oficina">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-title">Sobre Nosotros</h2>
+                    <p>MARKADIO es una empresa líder en soluciones tecnológicas con más de 10 años de experiencia en el mercado. Nuestro equipo de expertos está comprometido con la excelencia y la innovación.</p>
+                    <p>Nos especializamos en entender las necesidades únicas de cada cliente para ofrecer soluciones personalizadas que generen valor real para su negocio.</p>
+                    <a href="#" class="btn">Conoce nuestro equipo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials reveal" id="clients">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <p class="section-subtitle">Testimonios reales de empresas que han transformado sus negocios con nuestras soluciones.</p>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-cards">
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">MARKADIO revolucionó nuestra cadena de suministro con su software personalizado. La eficiencia aumentó en un 40% y los errores se redujeron a casi cero.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Narciso Ortiz Ruiz, Gerente de Empresas YEIMAU, cliente de MARKADIO">
+                            <div class="author-info">
+                                <h4>Narciso Ortiz Ruiz</h4>
+                                <p>Gerente de Empresas YEIMAU</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">La solución de automatización que implementaron en nuestro restaurante nos permitió reducir costos operativos y mejorar la experiencia del cliente significativamente.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Victor Villa, Administrador de Restaurante y Chicharrones El CAÑITO, cliente de MARKADIO">
+                            <div class="author-info">
+                                <h4>Victor Villa</h4>
+                                <p>Administrador de Restaurante y Chicharrones El CAÑITO</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">Como CIO, busco siempre socios tecnológicos confiables. MARKADIO ha demostrado ser un aliado estratégico en nuestra transformación digital con soluciones robustas y soporte excepcional.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Remberto Peña, CIO de Soluciones Ambar, cliente de MARKADIO">
+                            <div class="author-info">
+                                <h4>Remberto Peña</h4>
+                                <p>CIO de Soluciones Ambar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog reveal" id="blog">
+        <div class="container">
+            <h2 class="section-title">Últimos Artículos</h2>
+            <p class="section-subtitle">Mantente actualizado con las últimas tendencias tecnológicas y casos de éxito.</p>
+            
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="Artículo sobre tendencias de inteligencia artificial en negocios 2023">
+                    </div>
+                    <div class="blog-content">
+                        <h3>Tendencias de IA que transformarán los negocios en 2023</h3>
+                        <div class="blog-meta">
+                            <span>Por: Carlos Mendez</span>
+                            <span class="blog-likes"><i class="fas fa-heart"></i> 124</span>
+                        </div>
+                        <p class="blog-excerpt">Exploramos las tecnologías de inteligencia artificial que están revolucionando industrias enteras y cómo pueden beneficiar a tu empresa.</p>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Artículo sobre mejores prácticas de seguridad en la nube">
+                    </div>
+                    <div class="blog-content">
+                        <h3>Mejores prácticas para seguridad en entornos cloud</h3>
+                        <div class="blog-meta">
+                            <span>Por: Ana Lucía Torres</span>
+                            <span class="blog-likes"><i class="fas fa-heart"></i> 89</span>
+                        </div>
+                        <p class="blog-excerpt">Guía esencial para proteger tus datos y aplicaciones en la nube contra amenazas cibernéticas cada vez más sofisticadas.</p>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1622675363311-3e1904dc1885?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Artículo sobre automatización en la gestión empresarial">
+                    </div>
+                    <div class="blog-content">
+                        <h3>Cómo la automatización está cambiando la gestión empresarial</h3>
+                        <div class="blog-meta">
+                            <span>Por: Javier Ríos</span>
+                            <span class="blog-likes"><i class="fas fa-heart"></i> 156</span>
+                        </div>
+                        <p class="blog-excerpt">Casos reales de empresas que han logrado aumentar su productividad en un 200% mediante procesos automatizados.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">MARKA<span>DIO</span></div>
+                    <p>Líderes en soluciones tecnológicas innovadoras que impulsan el crecimiento y la transformación digital de tu negocio.</p>
+                    <div class="social-links">
+                        <a href="javascript:void(0)" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="javascript:void(0)" aria-label="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="javascript:void(0)" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="javascript:void(0)" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="javascript:void(0)">Política de privacidad</a></li>
+                        <li><a href="javascript:void(0)">Términos y condiciones</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="javascript:void(0)">Soporte técnico</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir las últimas noticias y ofertas especiales.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Tu correo electrónico" required id="newsletterEmail">
+                        <button type="submit" title="Suscribirse">
+                            <i class="fas fa-paper-plane"></i>
+                            <span class="sr-only">Suscribirse</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Tecnológica 1234, Ciudad Digital</p>
+                    <p><i class="fas fa-phone-alt"></i> WhatsApp: 3045489995</p>
+                    <p><i class="fas fa-envelope"></i> info@markadio.com</p>
+                    <p><i class="fas fa-clock"></i> Lunes a Viernes: 9am - 6pm</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="footerYear"></span> MARKADIO Soluciones Tecnológicas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="newsletterMessage" style="display:none; margin-top:10px;"></div>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Cerrar menú al hacer scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+
+        // Cerrar menú al hacer clic fuera
+        window.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Validación y manejo del formulario de newsletter
+        const newsletterForm = document.getElementById('newsletterForm');
+        const newsletterEmail = document.getElementById('newsletterEmail');
+        const newsletterMessage = document.getElementById('newsletterMessage');
+
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = newsletterEmail.value.trim();
+            if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+                newsletterMessage.style.display = 'block';
+                newsletterMessage.style.color = 'red';
+                newsletterMessage.textContent = 'Por favor, introduce un correo electrónico válido.';
+                return;
+            }
+            newsletterMessage.style.display = 'block';
+            newsletterMessage.style.color = 'green';
+            newsletterMessage.textContent = '¡Gracias por suscribirte!';
+            newsletterForm.reset();
+        });
+
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+        // Animación de aparición de secciones al hacer scroll
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                } else {
+                    reveals[i].classList.remove('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('DOMContentLoaded', revealOnScroll);
+    </script>
+</body>
+</html>
