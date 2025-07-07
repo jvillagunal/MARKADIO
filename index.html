@@ -1058,5 +1058,30 @@
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('DOMContentLoaded', revealOnScroll);
     </script>
+    <script>
+  var vapiInstance = null;
+  const assistant = "58762a96-b878-46f1-84ec-5bd04dfb60cc"; // NUEVO ASSISTANT ID
+  const apiKey = "6f2dcc5f-a608-4e72-b49e-07d606aaf601"; // NUEVA PUBLIC API KEY
+
+  const buttonConfig = {
+    showVapiButton: true // MOSTRAR EL BOTÓN POR DEFECTO
+  };
+
+  (function (d, t) {
+    var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+    g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g, s);
+    g.onload = function () {
+      vapiInstance = window.vapiSDK.run({
+        apiKey: apiKey,
+        assistant: assistant,
+        config: buttonConfig
+      });
+    };
+  })(document, "script");
+</script>
 </body>
 </html>
