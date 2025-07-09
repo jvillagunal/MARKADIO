@@ -1058,41 +1058,62 @@
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('DOMContentLoaded', revealOnScroll);
     </script>
-       <!-- Botón personalizado con tu imagen -->
+       <!-- Botón personalizado con imagen y botón alternativo -->
 <div id="custom-vapi-btn">
   <img src="https://nativoecohotel.com/wp-content/uploads/2025/07/asistente-virtual.png" alt="Asistente Virtual">
 </div>
+<!-- Botón alternativo para pruebas (descomenta para usar en lugar de la imagen) -->
+<!--
+<button id="custom-vapi-btn">Iniciar Asistente</button>
+-->
 
-<!-- Estilos -->
-<style>
-  #custom-vapi-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    cursor: pointer;
-  }
-
-  #custom-vapi-btn img {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease;
-  }
-
-  #custom-vapi-btn img:hover {
-    transform: scale(1.05);
-  }
-</style>
-
-<!-- Script para cargar el SDK y usar tu imagen como disparador -->
 <script>
+  // Inyectar estilos directamente en el DOM
+  const style = document.createElement("style");
+  style.textContent = `
+    #custom-vapi-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      cursor: pointer;
+    }
+
+    #custom-vapi-btn img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease;
+    }
+
+    #custom-vapi-btn img:hover {
+      transform: scale(1.05);
+    }
+
+    #custom-vapi-btn button {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 16px;
+      transition: transform 0.2s ease;
+    }
+
+    #custom-vapi-btn button:hover {
+      transform: scale(1.05);
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Configuración del SDK de Vapi
   const assistantId = "58762a96-b878-46f1-84ec-5bd04dfb60cc";
   const publicApiKey = "6f2dcc5f-a608-4e72-b49e-07d606aaf601";
 
+  // Cargar el script del SDK
   const script = document.createElement("script");
-  script.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+  script.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@0.1.0/dist/assets/index.js"; // Versión específica
   script.defer = true;
   script.async = true;
 
@@ -1105,21 +1126,27 @@
         config: { showVapiButton: false }
       });
       console.log("vapiInstance inicializado:", window.vapiInstance);
+      console.log("Detalles de vapiInstance:", JSON.stringify(window.vapiInstance, null, 2));
       console.log("Métodos de vapiInstance:", Object.keys(window.vapiInstance || {}));
     } catch (e) {
       console.error("❌ Error al inicializar vapiSDK:", e);
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    // Verificar el elemento y asociar el evento click
+    function checkAndAttachClickEvent() {
       const customButton = document.getElementById("custom-vapi-btn");
       if (!customButton) {
         console.error("❌ El elemento #custom-vapi-btn no se encontró en el DOM.");
+        setTimeout(checkAndAttachClickEvent, 1000); // Reintenta cada 1 segundo
         return;
       }
       console.log("✅ Botón personalizado encontrado en el DOM.");
+      attachClickEvent(customButton);
+    }
 
-      customButton.addEventListener("click", () => {
-        console.log("🖱️ Clic en el botón personalizado.");
+    function attachClickEvent(button) {
+      button.addEventListener("click", () => {
+        console.log("🖱️ Clic detectado en el botón personalizado.");
         if (window.vapiInstance && typeof window.vapiInstance.start === "function") {
           try {
             window.vapiInstance.start();
@@ -1130,9 +1157,25 @@
         } else {
           console.warn("⚠️ vapiInstance no está listo o no tiene el método start.");
           console.log("Estado de vapiInstance:", window.vapiInstance);
+          console.log("Métodos de vapiInstance:", Object.keys(window.vapiInstance || {}));
+          // Intento alternativo con call.start()
+          if (window.vapiInstance && window.vapiInstance.call && typeof window.vapiInstance.call.start === "function") {
+            try {
+              window.vapiInstance.call.start();
+              console.log("✅ Asistente iniciado usando call.start().");
+            } catch (e) {
+              console.error("❌ Error al usar call.start():", e);
+            }
+          } else {
+            console.error("❌ El método call.start() tampoco está disponible.");
+          }
         }
       });
-    });
+    }
+
+    // Iniciar la verificación del elemento
+    document.addEventListener("DOMContentLoaded", checkAndAttachClickEvent);
+    checkAndAttachClickEvent(); // Verifica inmediatamente
   };
 
   script.onerror = function () {
