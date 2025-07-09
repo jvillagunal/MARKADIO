@@ -1097,28 +1097,46 @@
   script.async = true;
 
   script.onload = function () {
-    // Ejecutamos el SDK sin mostrar el botón
-    window.vapiInstance = window.vapiSDK.run({
-      apiKey: publicApiKey,
-      assistant: assistantId,
-      config: { showVapiButton: false }
-    });
+    console.log("✅ Script del SDK cargado correctamente.");
+    try {
+      window.vapiInstance = window.vapiSDK.run({
+        apiKey: publicApiKey,
+        assistant: assistantId,
+        config: { showVapiButton: false }
+      });
+      console.log("vapiInstance inicializado:", window.vapiInstance);
+      console.log("Métodos de vapiInstance:", Object.keys(window.vapiInstance || {}));
+    } catch (e) {
+      console.error("❌ Error al inicializar vapiSDK:", e);
+    }
 
-    // Agregamos el evento después que esté listo
-    const customButton = document.getElementById("custom-vapi-btn");
-
-    customButton.addEventListener("click", () => {
-      if (window.vapiInstance && typeof window.vapiInstance.start === "function") {
-        try {
-          window.vapiInstance.start();
-          console.log("✅ Asistente iniciado desde imagen personalizada.");
-        } catch (e) {
-          console.error("❌ Error al iniciar el asistente:", e);
-        }
-      } else {
-        console.warn("⚠️ vapiInstance aún no está listo.");
+    document.addEventListener("DOMContentLoaded", () => {
+      const customButton = document.getElementById("custom-vapi-btn");
+      if (!customButton) {
+        console.error("❌ El elemento #custom-vapi-btn no se encontró en el DOM.");
+        return;
       }
+      console.log("✅ Botón personalizado encontrado en el DOM.");
+
+      customButton.addEventListener("click", () => {
+        console.log("🖱️ Clic en el botón personalizado.");
+        if (window.vapiInstance && typeof window.vapiInstance.start === "function") {
+          try {
+            window.vapiInstance.start();
+            console.log("✅ Asistente iniciado desde imagen personalizada.");
+          } catch (e) {
+            console.error("❌ Error al iniciar el asistente:", e);
+          }
+        } else {
+          console.warn("⚠️ vapiInstance no está listo o no tiene el método start.");
+          console.log("Estado de vapiInstance:", window.vapiInstance);
+        }
+      });
     });
+  };
+
+  script.onerror = function () {
+    console.error("❌ Error al cargar el script del SDK de Vapi.");
   };
 
   document.head.appendChild(script);
