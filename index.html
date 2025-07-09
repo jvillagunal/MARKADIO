@@ -1058,71 +1058,96 @@
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('DOMContentLoaded', revealOnScroll);
     </script>
-    <!-- Botón personalizado con tu imagen -->
-<div id="custom-vapi-btn">
-  <img src="https://nativoecohotel.com/wp-content/uploads/2025/07/asistente-virtual.png" alt="Asistente Virtual">
-</div>
+       /* Mueve el botón oficial de Vapi al mismo lugar de tu imagen y lo oculta */
+        #vapi-button { /* La ID del botón de Vapi por defecto es 'vapi-button' */
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            opacity: 0; /* Lo hacemos invisible */
+            pointer-events: none; /* Desactivamos los eventos de clic en él */
+            z-index: 1; /* Aseguramos que esté por debajo de tu botón */
+        }
 
-<!-- Estilos del botón -->
-<style>
-  /* Mueve el botón oficial de Vapi al mismo lugar de tu imagen y lo oculta */
-  #vapi-button {
-    position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 1;
-  }
+        /* Tu botón personalizado */
+        #custom-vapi-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999; /* Aseguramos que esté por encima de todo */
+            cursor: pointer;
+        }
 
-  /* Tu botón personalizado */
-  #custom-vapi-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    cursor: pointer;
-  }
+        #custom-vapi-btn img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+        }
 
-  #custom-vapi-btn img {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease;
-  }
+        #custom-vapi-btn img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
 
-  #custom-vapi-btn img:hover {
-    transform: scale(1.05);
-  }
-</style>
+    <div id="custom-vapi-btn">
+        <img src="https://nativoecohotel.com/wp-content/uploads/2025/07/asistente-virtual.png" alt="Asistente Virtual">
+    </div>
 
-<!-- Script de Vapi -->
-<script>
-  (function () {
-    const assistantId = "58762a96-b878-46f1-84ec-5bd04dfb60cc";
-    const publicApiKey = "6f2dcc5f-a608-4e72-b49e-07d606aaf601";
+    <script>
+        (function () {
+            const assistantId = "58762a96-b878-46f1-84ec-5bd04dfb60cc";
+            const publicApiKey = "6f2dcc5f-a608-4e72-b49e-07d606aaf601";
 
-    const buttonConfig = {
-      showVapiButton: true
-    };
+            // Importante: No mostrar el botón de Vapi por defecto
+            const buttonConfig = {
+                showVapiButton: false // Establece esto en false para no mostrar el botón por defecto de Vapi
+            };
 
-    const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-    script.defer = true;
-    script.async = true;
+            const script = document.createElement("script");
+            script.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+            script.defer = true;
+            script.async = true;
 
-    script.onload = function () {
-      window.vapiInstance = window.vapiSDK.run({
-        apiKey: publicApiKey,
-        assistant: assistantId,
-        config: buttonConfig
-      });
-    };
+            script.onload = function () {
+                window.vapiInstance = window.vapiSDK.run({
+                    apiKey: publicApiKey,
+                    assistant: assistantId,
+                    config: buttonConfig
+                });
 
-    document.head.appendChild(script);
-  })();
-</script>
-  
+                // --- CÓDIGO NUEVO A AGREGAR ---
+                // 1. Obtener una referencia a tu botón personalizado
+                const customButton = document.getElementById('custom-vapi-btn');
+
+                // 2. Añadir un evento de clic a tu botón personalizado
+                customButton.addEventListener('click', function() {
+                    // 3. Iniciar la llamada de Vapi AI cuando se haga clic
+                    if (window.vapiInstance) {
+                        window.vapiInstance.start();
+                        console.log('Iniciando llamada de Vapi AI desde el botón personalizado...');
+                    } else {
+                        console.error('Vapi SDK no está inicializado.');
+                    }
+                });
+
+                // Opcional: Escuchar eventos de Vapi para cambiar la UI si lo necesitas
+                window.vapiInstance.on("call-start", () => {
+                    console.log("Llamada Vapi AI iniciada.");
+                    // Puedes cambiar la imagen del botón o añadir una animación aquí
+                });
+
+                window.vapiInstance.on("call-end", () => {
+                    console.log("Llamada Vapi AI finalizada.");
+                    // Vuelve al estado inicial de tu botón
+                });
+                // --- FIN DEL CÓDIGO NUEVO ---
+            };
+
+            document.head.appendChild(script);
+        })();
+    </script>
 </body>
 </html>
