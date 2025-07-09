@@ -1113,8 +1113,10 @@
 
   // Cargar el script del SDK
   const script = document.createElement("script");
-  script.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@0.1.0/dist/assets/index.js"; // Versión específica
-  // Alternativa: descomenta la siguiente línea para probar @latest
+  // Intentar con el SDK oficial @vapi-ai/web@2.3.8
+  script.src = "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.3.8/dist/vapi.js";
+  // Alternativa: descomenta para probar @0.1.0 o @latest
+  // script.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@0.1.0/dist/assets/index.js";
   // script.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
   script.defer = true;
   script.async = true;
@@ -1184,6 +1186,21 @@
     console.error("❌ Error al cargar el script del SDK de Vapi:", error);
     console.error("Detalles del error:", error.message, error.stack);
     console.error("URL del script:", script.src);
+    // Intentar con URL alternativa si falla
+    if (script.src === "https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.3.8/dist/vapi.js") {
+      console.log("🔄 Reintentando con URL alternativa...");
+      const fallbackScript = document.createElement("script");
+      fallbackScript.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+      fallbackScript.defer = true;
+      fallbackScript.async = true;
+      fallbackScript.onload = script.onload;
+      fallbackScript.onerror = function (fallbackError) {
+        console.error("❌ Error al cargar el script alternativo:", fallbackError);
+        console.error("Detalles del error alternativo:", fallbackError.message, fallbackError.stack);
+        console.error("URL del script alternativo:", fallbackScript.src);
+      };
+      document.head.appendChild(fallbackScript);
+    }
   };
 
   document.head.appendChild(script);
