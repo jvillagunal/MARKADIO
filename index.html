@@ -1058,14 +1058,15 @@
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('DOMContentLoaded', revealOnScroll);
     </script>
-       /* Mueve el botón oficial de Vapi al mismo lugar de tu imagen y lo oculta */
-        #vapi-button { /* La ID del botón de Vapi por defecto es 'vapi-button' */
-            position: fixed !important;
-            bottom: 20px !important;
-            right: 20px !important;
-            opacity: 0; /* Lo hacemos invisible */
-            pointer-events: none; /* Desactivamos los eventos de clic en él */
-            z-index: 1; /* Aseguramos que esté por debajo de tu botón */
+       <style>
+        /* Oculta el botón oficial de Vapi de forma contundente */
+        /* Usa la clase CSS que Vapi aplica a su botón, que suele ser 'vapi-button' o similar. */
+        /* Si no funciona, inspecciona el elemento en el navegador para ver qué clase o ID tiene el botón de Vapi. */
+        .vapi-button-container, #vapi-button, .vapi-btn { /* Agregué más selectores comunes de Vapi */
+            display: none !important; /* ¡Esto es lo más importante para ocultarlo! */
+            opacity: 0 !important;
+            pointer-events: none !important;
+            visibility: hidden !important;
         }
 
         /* Tu botón personalizado */
@@ -1073,14 +1074,14 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 9999; /* Aseguramos que esté por encima de todo */
+            z-index: 9999; /* Asegura que esté por encima de casi todo */
             cursor: pointer;
         }
 
         #custom-vapi-btn img {
             width: 64px;
             height: 64px;
-            border-radius: 50%;
+            border-radius: 50%; /* Si quieres que sea redondo */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             transition: transform 0.2s ease;
         }
@@ -1101,9 +1102,9 @@
             const assistantId = "58762a96-b878-46f1-84ec-5bd04dfb60cc";
             const publicApiKey = "6f2dcc5f-a608-4e72-b49e-07d606aaf601";
 
-            // Importante: No mostrar el botón de Vapi por defecto
+            // Importante: No mostrar el botón de Vapi por defecto desde la configuración del SDK
             const buttonConfig = {
-                showVapiButton: false // Establece esto en false para no mostrar el botón por defecto de Vapi
+                showVapiButton: false // Esto le dice al SDK que no renderice su botón
             };
 
             const script = document.createElement("script");
@@ -1118,13 +1119,12 @@
                     config: buttonConfig
                 });
 
-                // --- CÓDIGO NUEVO A AGREGAR ---
-                // 1. Obtener una referencia a tu botón personalizado
+                // Obtener una referencia a tu botón personalizado
                 const customButton = document.getElementById('custom-vapi-btn');
 
-                // 2. Añadir un evento de clic a tu botón personalizado
+                // Añadir un evento de clic a tu botón personalizado
                 customButton.addEventListener('click', function() {
-                    // 3. Iniciar la llamada de Vapi AI cuando se haga clic
+                    // Iniciar la llamada de Vapi AI cuando se haga clic
                     if (window.vapiInstance) {
                         window.vapiInstance.start();
                         console.log('Iniciando llamada de Vapi AI desde el botón personalizado...');
@@ -1143,7 +1143,10 @@
                     console.log("Llamada Vapi AI finalizada.");
                     // Vuelve al estado inicial de tu botón
                 });
-                // --- FIN DEL CÓDIGO NUEVO ---
+
+                window.vapiInstance.on("error", (error) => {
+                    console.error("Error en la llamada de Vapi AI:", error);
+                });
             };
 
             document.head.appendChild(script);
