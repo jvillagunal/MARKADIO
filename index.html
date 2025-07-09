@@ -1114,6 +1114,8 @@
   // Cargar el script del SDK
   const script = document.createElement("script");
   script.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@0.1.0/dist/assets/index.js"; // Versión específica
+  // Alternativa: descomenta la siguiente línea para probar @latest
+  // script.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
   script.defer = true;
   script.async = true;
 
@@ -1178,8 +1180,10 @@
     checkAndAttachClickEvent(); // Verifica inmediatamente
   };
 
-  script.onerror = function () {
-    console.error("❌ Error al cargar el script del SDK de Vapi.");
+  script.onerror = function (error) {
+    console.error("❌ Error al cargar el script del SDK de Vapi:", error);
+    console.error("Detalles del error:", error.message, error.stack);
+    console.error("URL del script:", script.src);
   };
 
   document.head.appendChild(script);
