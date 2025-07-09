@@ -1065,11 +1065,17 @@
 
 <!-- Estilos del botón -->
 <style>
+  /* Mueve el botón oficial de Vapi al mismo lugar de tu imagen y lo oculta */
   #vapi-button {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
     opacity: 0;
     pointer-events: none;
+    z-index: 1;
   }
 
+  /* Tu botón personalizado */
   #custom-vapi-btn {
     position: fixed;
     bottom: 20px;
